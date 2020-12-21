@@ -1,0 +1,46 @@
+{
+  "version": 2,
+  "dgSpecHash": "1jOFllDrfYOfcluNjA7VZMUuC0gm6c7AA625d708FMnyZA3VbTbIl0nRnAnT6DbuaKoT9yZJK54Yfqw7ioTKYw==",
+  "success": true,
+  "projectFilePath": "D:\\development\\git\\Commonality\\Commonality.Wpf\\Commonality.Wpf.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\phils\\.nuget\\packages\\eto.forms\\2.5.8\\eto.forms.2.5.8.nupkg.sha512",
+    "C:\\Users\\phils\\.nuget\\packages\\eto.platform.wpf\\2.5.8\\eto.platform.wpf.2.5.8.nupkg.sha512",
+    "C:\\Users\\phils\\.nuget\\packages\\extended.wpf.toolkit\\3.6.0\\extended.wpf.toolkit.3.6.0.nupkg.sha512",
+    "C:\\Users\\phils\\.nuget\\packages\\system.componentmodel.annotations\\4.7.0\\system.componentmodel.annotations.4.7.0.nupkg.sha512",
+    "C:\\Users\\phils\\.nuget\\packages\\windows7apicodepack-core\\1.1.0\\windows7apicodepack-core.1.1.0.nupkg.sha512",
+    "C:\\Users\\phils\\.nuget\\packages\\windows7apicodepack-shell\\1.1.0\\windows7apicodepack-shell.1.1.0.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Extended.Wpf.Toolkit 3.6.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework '.NETCoreApp,Version=v3.1'. This package may not be fully compatible with your project.",
+      "libraryId": "Extended.Wpf.Toolkit",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v3.1"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Windows7APICodePack-Core 1.1.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework '.NETCoreApp,Version=v3.1'. This package may not be fully compatible with your project.",
+      "libraryId": "Windows7APICodePack-Core",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v3.1"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Windows7APICodePack-Shell 1.1.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework '.NETCoreApp,Version=v3.1'. This package may not be fully compatible with your project.",
+      "libraryId": "Windows7APICodePack-Shell",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v3.1"
+      ]
+    }
+  ]
+}

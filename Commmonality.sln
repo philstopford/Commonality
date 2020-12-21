@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Commonality", "Commonality\Commonality.csproj", "{B8A903C5-DA76-42B7-B4C6-D4A50064B9BD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Commonality.Wpf", "Commonality.Wpf\Commonality.Wpf.csproj", "{D6DBF125-5EDB-499A-B5B8-07895EE2DE21}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Commonality.Gtk", "Commonality.Gtk\Commonality.Gtk.csproj", "{BA89F7C9-D8D0-4D12-A89D-5EC5F04259D4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Commonality.Mac", "Commonality.Mac\Commonality.Mac.csproj", "{EEA0DE40-6FDC-47B0-AE01-E655336EE663}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B8A903C5-DA76-42B7-B4C6-D4A50064B9BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8A903C5-DA76-42B7-B4C6-D4A50064B9BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8A903C5-DA76-42B7-B4C6-D4A50064B9BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8A903C5-DA76-42B7-B4C6-D4A50064B9BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6DBF125-5EDB-499A-B5B8-07895EE2DE21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6DBF125-5EDB-499A-B5B8-07895EE2DE21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6DBF125-5EDB-499A-B5B8-07895EE2DE21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6DBF125-5EDB-499A-B5B8-07895EE2DE21}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA89F7C9-D8D0-4D12-A89D-5EC5F04259D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA89F7C9-D8D0-4D12-A89D-5EC5F04259D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA89F7C9-D8D0-4D12-A89D-5EC5F04259D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA89F7C9-D8D0-4D12-A89D-5EC5F04259D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EEA0DE40-6FDC-47B0-AE01-E655336EE663}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEA0DE40-6FDC-47B0-AE01-E655336EE663}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEA0DE40-6FDC-47B0-AE01-E655336EE663}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEA0DE40-6FDC-47B0-AE01-E655336EE663}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

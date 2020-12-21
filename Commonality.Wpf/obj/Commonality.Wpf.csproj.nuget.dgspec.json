@@ -1,0 +1,142 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\development\\git\\Commonality\\Commonality.Wpf\\Commonality.Wpf.csproj": {}
+  },
+  "projects": {
+    "D:\\development\\git\\Commonality\\Commonality.Wpf\\Commonality.Wpf.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\development\\git\\Commonality\\Commonality.Wpf\\Commonality.Wpf.csproj",
+        "projectName": "Commonality.Wpf",
+        "projectPath": "D:\\development\\git\\Commonality\\Commonality.Wpf\\Commonality.Wpf.csproj",
+        "packagesPath": "C:\\Users\\phils\\.nuget\\packages\\",
+        "outputPath": "D:\\development\\git\\Commonality\\Commonality.Wpf\\obj\\",
+        "projectStyle": "PackageReference",
+        "crossTargeting": true,
+        "configFilePaths": [
+          "C:\\Users\\phils\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://www.myget.org/F/eto/api/v3/index.json": {},
+          "https://www.myget.org/F/mellinoe/api/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {
+              "D:\\development\\git\\Commonality\\Commonality\\Commonality.csproj": {
+                "projectPath": "D:\\development\\git\\Commonality\\Commonality\\Commonality.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "Eto.Platform.Wpf": {
+              "target": "Package",
+              "version": "[2.5.8, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            },
+            "Microsoft.WindowsDesktop.App": {
+              "privateAssets": "none"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\development\\git\\Commonality\\Commonality\\Commonality.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\development\\git\\Commonality\\Commonality\\Commonality.csproj",
+        "projectName": "Commonality",
+        "projectPath": "D:\\development\\git\\Commonality\\Commonality\\Commonality.csproj",
+        "packagesPath": "C:\\Users\\phils\\.nuget\\packages\\",
+        "outputPath": "D:\\development\\git\\Commonality\\Commonality\\obj\\",
+        "projectStyle": "PackageReference",
+        "crossTargeting": true,
+        "configFilePaths": [
+          "C:\\Users\\phils\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://www.myget.org/F/eto/api/v3/index.json": {},
+          "https://www.myget.org/F/mellinoe/api/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.0": {
+            "targetAlias": "netstandard2.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.0": {
+          "targetAlias": "netstandard2.0",
+          "dependencies": {
+            "Eto.Forms": {
+              "target": "Package",
+              "version": "[2.5.8, )"
+            },
+            "NETStandard.Library": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.0.3, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

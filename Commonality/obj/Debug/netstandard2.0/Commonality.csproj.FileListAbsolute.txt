@@ -1,0 +1,9 @@
+D:\development\Com\Commonality\bin\Debug\netstandard2.0\Commonality.deps.json
+D:\development\Com\Commonality\bin\Debug\netstandard2.0\Commonality.dll
+D:\development\Com\Commonality\bin\Debug\netstandard2.0\Commonality.pdb
+D:\development\Com\Commonality\obj\Debug\netstandard2.0\Commonality.csprojAssemblyReference.cache
+D:\development\Com\Commonality\obj\Debug\netstandard2.0\Commonality.AssemblyInfoInputs.cache
+D:\development\Com\Commonality\obj\Debug\netstandard2.0\Commonality.AssemblyInfo.cs
+D:\development\Com\Commonality\obj\Debug\netstandard2.0\Commonality.csproj.CoreCompileInputs.cache
+D:\development\Com\Commonality\obj\Debug\netstandard2.0\Commonality.dll
+D:\development\Com\Commonality\obj\Debug\netstandard2.0\Commonality.pdb

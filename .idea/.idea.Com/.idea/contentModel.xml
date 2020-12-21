@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\phils\AppData\Local\JetBrains\Rider2020.3\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\phils\AppData\Local\JetBrains\Rider2020.3\resharper-host\Local\Transient\Rider\v203\SolutionCaches\_Com.-1737778279.00" t="ExcludeRecursive" />
+    <e p="D:\development\Com" t="IncludeFlat">
+      <e p="Com.sln" t="IncludeFlat" />
+      <e p="Commonality" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Commonality.csproj" t="IncludeRecursive" />
+        <e p="MainForm.cs" t="Include" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netstandard2.0" t="Include">
+              <e p="Commonality.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="Commonality.Gtk" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Commonality.Gtk.csproj" t="IncludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.1" t="Include">
+              <e p="Commonality.Gtk.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Program.cs" t="Include" />
+      </e>
+      <e p="Commonality.Mac" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Commonality.Mac.csproj" t="IncludeRecursive" />
+        <e p="Icon.icns" t="Include" />
+        <e p="Info.plist" t="Include" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.1" t="Include">
+              <e p="Commonality.Mac.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Program.cs" t="Include" />
+      </e>
+      <e p="Commonality.Wpf" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Commonality.Wpf.csproj" t="IncludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.1" t="Include">
+              <e p="Commonality.Wpf.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Program.cs" t="Include" />
+      </e>
+      <e p="packages" t="ExcludeRecursive" />
+    </e>
+  </component>
+</project>
