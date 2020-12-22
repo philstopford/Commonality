@@ -3,6 +3,7 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFrameworks>net5.0-windows</TargetFrameworks>
+    <ServerGarbageCollection>true</ServerGarbageCollection>
   </PropertyGroup>
   
   <ItemGroup>
