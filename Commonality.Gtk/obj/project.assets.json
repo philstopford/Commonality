@@ -1,7 +1,7 @@
 {
   "version": 3,
   "targets": {
-    ".NETCoreApp,Version=v3.1": {
+    "net5.0": {
       "AtkSharp/3.22.25.74": {
         "type": "package",
         "dependencies": {
@@ -131,15 +131,29 @@
       },
       "Commonality/1.0.0": {
         "type": "project",
-        "framework": ".NETStandard,Version=v2.0",
+        "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
-          "Eto.Forms": "2.5.8"
+          "Eto.Forms": "2.5.8",
+          "resources": "1.0.0"
         },
         "compile": {
           "bin/placeholder/Commonality.dll": {}
         },
         "runtime": {
           "bin/placeholder/Commonality.dll": {}
+        }
+      },
+      "resources/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "Eto.Forms": "2.5.8"
+        },
+        "compile": {
+          "bin/placeholder/resources.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/resources.dll": {}
         }
       }
     }
@@ -353,10 +367,15 @@
       "type": "project",
       "path": "../Commonality/Commonality.csproj",
       "msbuildProject": "../Commonality/Commonality.csproj"
+    },
+    "resources/1.0.0": {
+      "type": "project",
+      "path": "../resources/resources.csproj",
+      "msbuildProject": "../resources/resources.csproj"
     }
   },
   "projectFileDependencyGroups": {
-    ".NETCoreApp,Version=v3.1": [
+    "net5.0": [
       "Commonality >= 1.0.0",
       "Eto.Platform.Gtk >= 2.5.8"
     ]
@@ -379,7 +398,7 @@
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "netcoreapp3.1"
+        "net5.0"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
@@ -388,8 +407,8 @@
         "https://www.myget.org/F/mellinoe/api/v3/index.json": {}
       },
       "frameworks": {
-        "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
+        "net5.0": {
+          "targetAlias": "net5.0",
           "projectReferences": {
             "D:\\development\\git\\Commonality\\Commonality\\Commonality.csproj": {
               "projectPath": "D:\\development\\git\\Commonality\\Commonality\\Commonality.csproj"
@@ -404,8 +423,8 @@
       }
     },
     "frameworks": {
-      "netcoreapp3.1": {
-        "targetAlias": "netcoreapp3.1",
+      "net5.0": {
+        "targetAlias": "net5.0",
         "dependencies": {
           "Eto.Platform.Gtk": {
             "target": "Package",

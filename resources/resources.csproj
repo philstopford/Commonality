@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="commonality.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="commonality.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Eto.Forms" Version="2.5.8" />
+  </ItemGroup>
+
+</Project>

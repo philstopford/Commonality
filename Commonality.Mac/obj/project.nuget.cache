@@ -1,15 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "OthPeM3gBA8yRzohuO8nhHmhoxzTdB6rrzUfjQZeDBn7vSRWgw2AcGz9KSNcCdZu3m444MZQifbXZLejvXLehA==",
+  "dgSpecHash": "8WrVUj6O4IN/a/ErWee02BckWCVEhl/p9451c54QRGmf0kQe5pZclqf0f6FuZhX+z+9xmUCXdqmOuGLEGyQxKg==",
   "success": true,
   "projectFilePath": "D:\\development\\git\\Commonality\\Commonality.Mac\\Commonality.Mac.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\phils\\.nuget\\packages\\eto.forms\\2.5.8\\eto.forms.2.5.8.nupkg.sha512",
     "C:\\Users\\phils\\.nuget\\packages\\eto.platform.mac64\\2.5.8\\eto.platform.mac64.2.5.8.nupkg.sha512",
     "C:\\Users\\phils\\.nuget\\packages\\system.componentmodel.annotations\\4.7.0\\system.componentmodel.annotations.4.7.0.nupkg.sha512",
-    "C:\\Users\\phils\\.nuget\\packages\\microsoft.netcore.app.runtime.osx-x64\\3.1.10\\microsoft.netcore.app.runtime.osx-x64.3.1.10.nupkg.sha512",
-    "C:\\Users\\phils\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.osx-x64\\3.1.10\\microsoft.aspnetcore.app.runtime.osx-x64.3.1.10.nupkg.sha512",
-    "C:\\Users\\phils\\.nuget\\packages\\microsoft.netcore.app.host.osx-x64\\3.1.10\\microsoft.netcore.app.host.osx-x64.3.1.10.nupkg.sha512"
+    "C:\\Users\\phils\\.nuget\\packages\\microsoft.netcore.app.runtime.osx-x64\\5.0.1\\microsoft.netcore.app.runtime.osx-x64.5.0.1.nupkg.sha512",
+    "C:\\Users\\phils\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.osx-x64\\5.0.1\\microsoft.aspnetcore.app.runtime.osx-x64.5.0.1.nupkg.sha512",
+    "C:\\Users\\phils\\.nuget\\packages\\microsoft.netcore.app.host.osx-x64\\5.0.1\\microsoft.netcore.app.host.osx-x64.5.0.1.nupkg.sha512"
   ],
   "logs": []
 }

@@ -28,12 +28,13 @@ namespace Commonality
 
             Application.Instance.Invoke(() => updateProgress(0.0));
 
-            int updateI = (int)Math.Ceiling((float)(rowCount) / 100);
+            int updateI = (int)Math.Ceiling((float)(rowCount * colCount) / 100);
             if (updateI < 1)
             {
                 updateI = 1;
             }
             double progress = 0.0;
+            int cell = 0;
 
             Task fileLoadTask = Task.Run(() =>
             {
@@ -51,6 +52,7 @@ namespace Commonality
                     {
                         for (int c = 0; c < colCount; c++)
                         {
+                            cell++;
                             TableCell tc = new TableCell();
                             tl.Rows[row].Cells.Add(tc);
                             Label l = new Label
@@ -58,7 +60,7 @@ namespace Commonality
                                 Text = myTable.rows[row].data[c].Text, BackgroundColor = myTable.rows[row].data[c].C
                             };
                             tc.Control = l;
-                            if (row % updateI == 0)
+                            if (cell % updateI == 0)
                             {
                                 progress += 0.01f;
                                 Application.Instance.Invoke(() => updateProgress(progress));

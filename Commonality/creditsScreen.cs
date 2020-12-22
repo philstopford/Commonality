@@ -17,15 +17,14 @@ namespace Commonality
 
             Size = new Size(600, 430);
 
-            /*
             Panel imageHolder = new Panel();
             ImageView image = new ImageView();
-            image.Image = resources.images.quiltImage();
-            imageHolder.Size = new Size((int)(image.Image.Width * 0.4f), (int)(image.Image.Height * 0.4f));
+            image.Image = resources.images.commonalityImage();
+            imageHolder.Size = new Size((int)(image.Image.Width * 0.25f), (int)(image.Image.Height * 0.25f));
             imageHolder.Content = image;
             content.Rows.Add(new TableRow());
             content.Rows[content.Rows.Count - 1].Cells.Add(new TableCell() { Control = TableLayout.AutoSized(imageHolder, centered: true) });
-            */
+
             content.Rows.Add(new TableRow());
             textBox_credits = new RichTextArea();
             try

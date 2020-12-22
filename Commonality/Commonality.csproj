@@ -1,11 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>net5.0</TargetFrameworks>
   </PropertyGroup>
   
   <ItemGroup>
     <PackageReference Include="Eto.Forms" Version="2.5.8" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\resources\resources.csproj" />
   </ItemGroup>
   
 </Project>
