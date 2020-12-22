@@ -17,13 +17,13 @@
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/Commonality/MyTable.cs" />
       <option value="$PROJECT_DIR$/Commonality/creditsScreen.cs" />
       <option value="$PROJECT_DIR$/Commonality/CentralProperties.cs" />
-      <option value="$PROJECT_DIR$/Commonality/UIHandlers.cs" />
       <option value="$PROJECT_DIR$/Commonality/Process.cs" />
-      <option value="$PROJECT_DIR$/Commonality/CommonUIVars.cs" />
       <option value="$PROJECT_DIR$/Commonality/MainForm.cs" />
+      <option value="$PROJECT_DIR$/Commonality/CommonUIVars.cs" />
+      <option value="$PROJECT_DIR$/Commonality/UIHandlers.cs" />
+      <option value="$PROJECT_DIR$/Commonality/MyTable.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1m0z1R6X5qtS8HAcZNuGAl0mRak" />

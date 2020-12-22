@@ -7,20 +7,27 @@ namespace Commonality
 {
 	class MyTable
 	{
-		public List<Row> rows;
+		public delegate void PrepUI();
+		public PrepUI prepUI { get; set; }
+
+		public Row[] rows;
 
 		public MyTable(string[] lines)
 		{
-			rows = new List<Row>();
-			for (int i = 0; i < lines.Length; i++)
+			rows = new Row[lines.Length];
+			ParallelOptions pco = new ParallelOptions();
+			Parallel.For(0, lines.Length, pco, (i, loopState) =>
 			{
-				rows.Add(new Row(lines[i]));
+				rows[i] = new Row(lines[i]);
 			}
+			);
 		}
 	}
 	
 	class Row
 	{
+		public delegate void PrepUI();
+		public PrepUI prepUI { get; set; }
 		public Data[] data { get; set; }
 
 		public Row(string text)

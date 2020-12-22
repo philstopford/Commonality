@@ -10,7 +10,7 @@ namespace Commonality
         {
             MyTable myTable = new MyTable(lines);
 
-            int rowCount = myTable.rows.Count;
+            int rowCount = myTable.rows.Length;
             int colCount = myTable.rows[0].data.Length;
 
             Task fileLoadTask = Task.Run(() =>
