@@ -14,16 +14,18 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/2BC5ED24-0D5C-402C-8B6A-BD14FFCEE267/1E0/ExceptionDispatchInfo.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/3A91DFE7-9DD5-4C7A-B948-80F11B6CCC79/78/61593596/Application.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
       <option value="$PROJECT_DIR$/Commonality/creditsScreen.cs" />
-      <option value="$PROJECT_DIR$/Commonality/CentralProperties.cs" />
-      <option value="$PROJECT_DIR$/Commonality/Process.cs" />
       <option value="$PROJECT_DIR$/Commonality/MainForm.cs" />
-      <option value="$PROJECT_DIR$/Commonality/CommonUIVars.cs" />
+      <option value="$PROJECT_DIR$/Commonality/Setup.cs" />
       <option value="$PROJECT_DIR$/Commonality/UIHandlers.cs" />
+      <option value="$PROJECT_DIR$/Commonality/CommonUIVars.cs" />
+      <option value="$PROJECT_DIR$/Commonality/CentralProperties.cs" />
       <option value="$PROJECT_DIR$/Commonality/MyTable.cs" />
+      <option value="$PROJECT_DIR$/Commonality/Process.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1m0z1R6X5qtS8HAcZNuGAl0mRak" />

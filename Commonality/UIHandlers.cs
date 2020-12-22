@@ -32,10 +32,55 @@ namespace Commonality
             }
         }
 
+        private void saveAsHandler(object sender, EventArgs e)
+        {
+            SaveFileDialog ofd = new SaveFileDialog()
+            {
+                Title = "Choose file to save",
+                Filters =
+                {
+                    new FileFilter("CSV Files (*.csv)", ".csv")
+                }
+            };
+            if (ofd.ShowDialog(ParentWindow) == DialogResult.Ok)
+            {
+                doSave(ofd.FileName);
+            }
+        }
+
+        private void updateStatus(string text)
+        {
+            Application.Instance.Invoke(() =>
+            {
+                lbl_statusBar.Text = text;
+            });
+        }
+
+        private void updateProgress(int val)
+        {
+            return;
+            Application.Instance.Invoke(() =>
+            {
+                progressBar.Value = val;
+            });
+        }
+
+        private void updateProgress(double val)
+        {
+            Application.Instance.Invoke(() =>
+            {
+                progressBar.Value = (Int32) (val * progressBar.MaxValue);
+            });
+        }
+        
+        private void doSave(string filename)
+        {
+            File.WriteAllLines(filename, lines);
+        }
         private void doLoad(string filename)
         {
-            string[] lines = File.ReadAllLines(filename);
-            doStuff(lines);
+            lines = File.ReadAllLines(filename);
+            doStuff();
         }
 
         private void quitHandler(object sender, EventArgs e)

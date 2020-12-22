@@ -21,6 +21,7 @@
           </e>
         </e>
         <e p="Process.cs" t="Include" />
+        <e p="Setup.cs" t="Include" />
         <e p="UIHandlers.cs" t="Include" />
       </e>
       <e p="Commonality.Gtk" t="IncludeRecursive">

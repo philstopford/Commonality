@@ -7,7 +7,8 @@ namespace Commonality
         private Command quitCommand;
         private Command helpCommand;
         private Command aboutCommand;
-        private Command openSim;
+        private Command openCSV;
+        private Command saveAsCSV;
         private CreditsScreen aboutBox;
         private string helpPath;
         private bool helpAvailable;
@@ -15,5 +16,7 @@ namespace Commonality
         private Panel statusBar;
         private ProgressBar progressBar;
         private Label lbl_statusBar;
+
+        private int labelFontSize = 20;
     }
 }

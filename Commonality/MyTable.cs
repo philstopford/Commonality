@@ -1,26 +1,81 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Timers;
 using Eto.Drawing;
 
 namespace Commonality
 {
 	class MyTable
 	{
-		public delegate void PrepUI();
-		public PrepUI prepUI { get; set; }
+		public delegate void UpdateUIStatus(string text);
+		public UpdateUIStatus updateUIStatus { get; set; }
 
-		public Row[] rows;
+		public delegate void UpdateUIProgress(double val);
+		public UpdateUIProgress updateUIProgress { get; set; }
 
-		public MyTable(string[] lines)
+		public delegate void UpdateUIProgress2(int count, int max);
+		public UpdateUIProgress2 updateUIProgress2 { get; set; }
+
+		private int counter;
+		private int max;
+		private string[] lines_;
+		
+		void timerElapsed(object sender, System.Timers.ElapsedEventArgs e)
 		{
-			rows = new Row[lines.Length];
+			updateUIProgress?.Invoke((double)counter / max);
+		}
+
+		void statusUIWrapper(string text)
+		{
+			updateUIStatus?.Invoke(text);
+		}
+
+		void progressUIWrapper(double val)
+		{
+			updateUIProgress?.Invoke(val);
+		}
+		
+		public Row[] rows;
+		private System.Timers.Timer timer;
+
+		public MyTable()
+		{
+		}
+		public void parse(string[] lines)
+		{
+			lines_ = lines;
+			updateUIProgress?.Invoke(0.0);
+			max = lines.Length;
+			rows = new Row[max];
+			
+			updateUIStatus?.Invoke("Processing...");
+			counter = 0;
+
+			timer = new System.Timers.Timer();
+			timer.AutoReset = true;
+			timer.Elapsed += TimerOnElapsed;
+			timer.Interval = CentralProperties.timer_interval;
+			timer.Start();
+
 			ParallelOptions pco = new ParallelOptions();
-			Parallel.For(0, lines.Length, pco, (i, loopState) =>
-			{
-				rows[i] = new Row(lines[i]);
-			}
+			Parallel.For(0, max, pco, (i, loopState) =>
+				{
+					rows[i] = new Row(lines_[i]);
+					Interlocked.Increment(ref counter);
+				}
 			);
+			
+			timer.Stop();
+			timer.Dispose();
+			
+			updateUIStatus?.Invoke("Done");
+		}
+
+		private void TimerOnElapsed(object sender, ElapsedEventArgs e)
+		{
+			updateUIProgress?.Invoke((float)(counter) / max);
 		}
 	}
 	

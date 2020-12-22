@@ -3,15 +3,30 @@ using System.Threading.Tasks;
 using Eto.Forms;
 
 namespace Commonality
-{
+{ 
     public partial class MainForm
     {
-        private async void doStuff(string[] lines)
+        private async void doStuff()
         {
-            MyTable myTable = new MyTable(lines);
+            MyTable myTable = new MyTable();
+            myTable.updateUIProgress = updateProgress;
+            myTable.updateUIStatus = updateStatus;
+            Task parseTask = Task.Run(() =>
+            {
+                myTable.parse(lines);
+            });
+            try
+            {
+                await parseTask;
+            }
+            catch (Exception)
+            {
+            }
 
             int rowCount = myTable.rows.Length;
             int colCount = myTable.rows[0].data.Length;
+
+            Application.Instance.Invoke(() => updateProgress(0.0));
 
             Task fileLoadTask = Task.Run(() =>
             {
@@ -37,6 +52,7 @@ namespace Commonality
                             };
                             tc.Control = l;
                         }
+                        Application.Instance.Invoke(() => updateProgress(((float)row + 1) / rowCount));
                     }
 
                     p.Content = tl;
