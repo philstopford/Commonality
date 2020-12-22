@@ -7,3 +7,12 @@ D:\development\Com\Commonality\obj\Debug\netstandard2.0\Commonality.AssemblyInfo
 D:\development\Com\Commonality\obj\Debug\netstandard2.0\Commonality.csproj.CoreCompileInputs.cache
 D:\development\Com\Commonality\obj\Debug\netstandard2.0\Commonality.dll
 D:\development\Com\Commonality\obj\Debug\netstandard2.0\Commonality.pdb
+D:\development\git\Commonality\Commonality\bin\Debug\netstandard2.0\Commonality.deps.json
+D:\development\git\Commonality\Commonality\bin\Debug\netstandard2.0\Commonality.dll
+D:\development\git\Commonality\Commonality\bin\Debug\netstandard2.0\Commonality.pdb
+D:\development\git\Commonality\Commonality\obj\Debug\netstandard2.0\Commonality.csprojAssemblyReference.cache
+D:\development\git\Commonality\Commonality\obj\Debug\netstandard2.0\Commonality.AssemblyInfoInputs.cache
+D:\development\git\Commonality\Commonality\obj\Debug\netstandard2.0\Commonality.AssemblyInfo.cs
+D:\development\git\Commonality\Commonality\obj\Debug\netstandard2.0\Commonality.csproj.CoreCompileInputs.cache
+D:\development\git\Commonality\Commonality\obj\Debug\netstandard2.0\Commonality.dll
+D:\development\git\Commonality\Commonality\obj\Debug\netstandard2.0\Commonality.pdb

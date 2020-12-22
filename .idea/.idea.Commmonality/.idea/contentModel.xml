@@ -7,7 +7,9 @@
       <e p="Commmonality.sln" t="IncludeFlat" />
       <e p="Commonality" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
+        <e p="CentralProperties.cs" t="Include" />
         <e p="Commonality.csproj" t="IncludeRecursive" />
+        <e p="creditsScreen.cs" t="Include" />
         <e p="MainForm.cs" t="Include" />
         <e p="MyTable.cs" t="Include" />
         <e p="obj" t="ExcludeRecursive">
