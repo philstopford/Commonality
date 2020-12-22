@@ -17,53 +17,79 @@ namespace Commonality
 
 		public delegate void UpdateUIProgress2(int count, int max);
 		public UpdateUIProgress2 updateUIProgress2 { get; set; }
+
+		/*
+		void timerElapsed(object sender, System.Timers.ElapsedEventArgs e)
+		{
+			progressUIWrapper((double)counter / rowCount);
+		}
+		*/
+		public void statusUIWrapper(string text)
+		{
+			updateUIStatus?.Invoke(text);
+		}
+
+		public void progressUIWrapper(double val)
+		{
+			updateUIProgress?.Invoke(val);
+		}
+
 	}
+
+	class TableData
+    {
+		public double progress = 0.0;
+		public int rowCount;
+		public int colCount;
+		public int cellCounter;
+		public int updateI;
+
+		public TableData()
+        {
+			rowCount = 0;
+			colCount = 0;
+			cellCounter = 0;
+			updateI = 1;
+        }
+    }
+
 	class MyTable
 	{
 		public delegates myDelegates;
 
-		private int counter;
-		private int max;
 		private double progress;
 		private string[] lines_;
-		
-		void timerElapsed(object sender, System.Timers.ElapsedEventArgs e)
-		{
-			progressUIWrapper((double)counter / max);
-		}
 
-		void statusUIWrapper(string text)
-		{
-			myDelegates.updateUIStatus?.Invoke(text);
-		}
+		TableData td;
 
-		void progressUIWrapper(double val)
-		{
-			myDelegates.updateUIProgress?.Invoke(val);
-		}
-		
 		public Row[] rows;
 		private System.Timers.Timer timer;
 
 		public MyTable()
 		{
 			myDelegates = new delegates();
+			td = new TableData();
 		}
 		public void parse(string[] lines)
 		{
 			lines_ = lines;
 			myDelegates.updateUIProgress?.Invoke(0.0);
-			max = lines.Length;
-			rows = new Row[max];
+			td.rowCount = lines.Length;
+
+			// CSV must be rectangular, or this will fail.
+
+			td.colCount = lines[0].Split(new[] { ',' }).Length;
+
+			rows = new Row[td.rowCount];
 			
-			statusUIWrapper("Processing...");
-			counter = 0;
-			int updateI = (int)Math.Ceiling((float)(max) / 100);
-			if (updateI < 1)
+			myDelegates.statusUIWrapper("Processing...");
+			td.cellCounter = 0;
+			td.progress = 0.0;
+			td.updateI = (int)Math.Ceiling((float)(td.rowCount * td.colCount) / 100);
+			if (td.updateI < 1)
             {
-				updateI = 1;
+				td.updateI = 1;
             }
-			double progress = 0.0;
 
 			/*
 			timer = new System.Timers.Timer();
@@ -73,59 +99,58 @@ namespace Commonality
 			timer.Start();
 			*/
 			ParallelOptions pco = new ParallelOptions();
-			Parallel.For(0, max, pco, (i, loopState) =>
+			Parallel.For(0, td.rowCount, pco, (i, loopState) =>
 				{
-					rows[i] = new Row();
+					rows[i] = new Row(ref td);
 					rows[i].myDelegates = myDelegates;
 					rows[i].parse(lines[i]);
-					Interlocked.Increment(ref counter);
-					if (counter % updateI == 0)
-                    {
-						progress += 0.01f;
-						progressUIWrapper(progress);
-                    }
 				}
 			);
 			/*
 			timer.Stop();
 			timer.Dispose();
 			*/
-			statusUIWrapper("Done");
+			myDelegates.statusUIWrapper("Done");
 		}
 	}
 	
 	class Row
 	{
 		public delegates myDelegates;
+		public TableData td;
 
 		public Data[] data { get; set; }
 		
-		public Row()
+		public Row(ref TableData td_)
         {
 			myDelegates = new delegates();
+			td = td_;
         }
 
 		public void parse(string text)
 		{
 			string[] tokens = text.Split(new[] {','});
 
-			data = new Data[tokens.Length];
+			data = new Data[td.colCount];
 
-			// Now we need to pattern match and also do the color computation.
+			// Now we need to find our unique strings.
 			List<string> uniqueStrings = new List<string>();
 			uniqueStrings.Add(tokens[0]);
-			int[] colIndex = new int[tokens.Length];
-			colIndex[0] = 0;
-			for (int i = 1; i < tokens.Length; i++)
-			{
-				int cIndex = uniqueStrings.IndexOf(tokens[i]);
-				if (cIndex == -1)
-				{
-					uniqueStrings.Add(tokens[i]);
-					cIndex = uniqueStrings.Count - 1;
-				}
 
-				colIndex[i] = cIndex;
+			for (int i = 1; i < td.colCount; i++)
+			{
+				try
+				{
+					int cIndex = uniqueStrings.IndexOf(tokens[i]);
+					if (cIndex == -1)
+					{
+						uniqueStrings.Add(tokens[i]);
+					}
+
+				}
+				catch (Exception)
+                {
+                }
 			}
 
 			/* Figure out colors. This is not entirely trivial.
@@ -209,6 +234,12 @@ namespace Commonality
 				data[i] = new Data();
 				data[i].Text = tokens[i];
 				data[i].C = colors[uniqueStrings.IndexOf(tokens[i])];
+				Interlocked.Increment(ref td.cellCounter);
+				if (td.cellCounter % td.updateI == 0)
+				{
+					td.progress += 0.01f;
+					myDelegates.progressUIWrapper(td.progress);
+				}
 			});
 		}
 	}

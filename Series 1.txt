@@ -4,6 +4,7 @@
 	 - Allow for save to CSV (debug and validation of reload)
 	 - Status bar and progress bar.
 	  > Working on delegates to update these.
+	   - Working on progress feedback for large datasets.
 	 - Add ability to parse CSV from file.
 	 - Menu bar added.
 	 - Pushed table UI buildout into task to avoid blocking UI display.
