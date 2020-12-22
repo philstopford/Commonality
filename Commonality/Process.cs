@@ -9,8 +9,8 @@ namespace Commonality
         private async void doStuff()
         {
             MyTable myTable = new MyTable();
-            myTable.updateUIProgress = updateProgress;
-            myTable.updateUIStatus = updateStatus;
+            myTable.myDelegates.updateUIProgress = updateProgress;
+            myTable.myDelegates.updateUIStatus = updateStatus;
             Task parseTask = Task.Run(() =>
             {
                 myTable.parse(lines);
@@ -27,6 +27,13 @@ namespace Commonality
             int colCount = myTable.rows[0].data.Length;
 
             Application.Instance.Invoke(() => updateProgress(0.0));
+
+            int updateI = (int)Math.Ceiling((float)(rowCount) / 100);
+            if (updateI < 1)
+            {
+                updateI = 1;
+            }
+            double progress = 0.0;
 
             Task fileLoadTask = Task.Run(() =>
             {
@@ -51,8 +58,12 @@ namespace Commonality
                                 Text = myTable.rows[row].data[c].Text, BackgroundColor = myTable.rows[row].data[c].C
                             };
                             tc.Control = l;
+                            if (row % updateI == 0)
+                            {
+                                progress += 0.01f;
+                                Application.Instance.Invoke(() => updateProgress(progress));
+                            }
                         }
-                        Application.Instance.Invoke(() => updateProgress(((float)row + 1) / rowCount));
                     }
 
                     p.Content = tl;

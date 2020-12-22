@@ -92,7 +92,8 @@ namespace Commonality
 			statusTable.Rows[0].Cells.Add(new TableCell() {Control = progressBar});
 			
 			commands();
-			makeCSV(maxRows: 200, maxCols: 100);
+			makeCSV(maxRows: 10000, maxCols: 5);
+
 			doStuff();
 		}
 	}

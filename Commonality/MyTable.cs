@@ -7,8 +7,8 @@ using Eto.Drawing;
 
 namespace Commonality
 {
-	class MyTable
-	{
+	class delegates
+    {
 		public delegate void UpdateUIStatus(string text);
 		public UpdateUIStatus updateUIStatus { get; set; }
 
@@ -17,24 +17,29 @@ namespace Commonality
 
 		public delegate void UpdateUIProgress2(int count, int max);
 		public UpdateUIProgress2 updateUIProgress2 { get; set; }
+	}
+	class MyTable
+	{
+		public delegates myDelegates;
 
 		private int counter;
 		private int max;
+		private double progress;
 		private string[] lines_;
 		
 		void timerElapsed(object sender, System.Timers.ElapsedEventArgs e)
 		{
-			updateUIProgress?.Invoke((double)counter / max);
+			progressUIWrapper((double)counter / max);
 		}
 
 		void statusUIWrapper(string text)
 		{
-			updateUIStatus?.Invoke(text);
+			myDelegates.updateUIStatus?.Invoke(text);
 		}
 
 		void progressUIWrapper(double val)
 		{
-			updateUIProgress?.Invoke(val);
+			myDelegates.updateUIProgress?.Invoke(val);
 		}
 		
 		public Row[] rows;
@@ -42,50 +47,65 @@ namespace Commonality
 
 		public MyTable()
 		{
+			myDelegates = new delegates();
 		}
 		public void parse(string[] lines)
 		{
 			lines_ = lines;
-			updateUIProgress?.Invoke(0.0);
+			myDelegates.updateUIProgress?.Invoke(0.0);
 			max = lines.Length;
 			rows = new Row[max];
 			
-			updateUIStatus?.Invoke("Processing...");
+			statusUIWrapper("Processing...");
 			counter = 0;
+			int updateI = (int)Math.Ceiling((float)(max) / 100);
+			if (updateI < 1)
+            {
+				updateI = 1;
+            }
+			double progress = 0.0;
 
+			/*
 			timer = new System.Timers.Timer();
 			timer.AutoReset = true;
 			timer.Elapsed += TimerOnElapsed;
 			timer.Interval = CentralProperties.timer_interval;
 			timer.Start();
-
+			*/
 			ParallelOptions pco = new ParallelOptions();
 			Parallel.For(0, max, pco, (i, loopState) =>
 				{
-					rows[i] = new Row(lines_[i]);
+					rows[i] = new Row();
+					rows[i].myDelegates = myDelegates;
+					rows[i].parse(lines[i]);
 					Interlocked.Increment(ref counter);
+					if (counter % updateI == 0)
+                    {
+						progress += 0.01f;
+						progressUIWrapper(progress);
+                    }
 				}
 			);
-			
+			/*
 			timer.Stop();
 			timer.Dispose();
-			
-			updateUIStatus?.Invoke("Done");
-		}
-
-		private void TimerOnElapsed(object sender, ElapsedEventArgs e)
-		{
-			updateUIProgress?.Invoke((float)(counter) / max);
+			*/
+			statusUIWrapper("Done");
 		}
 	}
 	
 	class Row
 	{
-		public delegate void PrepUI();
-		public PrepUI prepUI { get; set; }
-		public Data[] data { get; set; }
+		public delegates myDelegates;
 
-		public Row(string text)
+		public Data[] data { get; set; }
+		
+		public Row()
+        {
+			myDelegates = new delegates();
+        }
+
+		public void parse(string text)
 		{
 			string[] tokens = text.Split(new[] {','});
 
