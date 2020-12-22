@@ -1,0 +1,11 @@
+1.0a1
+
+	- Prototyping.
+	 - Implemented code to build out a 'random' CSV input table to test the pipeline.
+	 - Extract commonality patterns per-row and set up the colors.
+	 - Ensure color modulation is not same-channel for adjacent cells.
+	 - Construct a table from labels with text and color displayed.
+	 - Place into a scrollable to avoid issues.
+	 ! Need to add ability to parse CSV with row and/or column headers
+	 ! Menu bar needed to provide file input, help, etc.
+	 ! Need to be able to mark pass/fail 
