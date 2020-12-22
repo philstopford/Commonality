@@ -77,53 +77,7 @@ namespace Commonality
 			doStuff(makeCSV(maxRows: 200, maxCols: 100));
 		}
 
-		async void doStuff(string[] lines)
-		{
-
-			MyTable myTable = new MyTable(lines);
-
-			int rowCount = myTable.rows.Count;
-			int colCount = myTable.rows[0].data.Length;
-
-			Task fileLoadTask = Task.Run(() =>
-			{
-				Application.Instance.Invoke(() =>
-				{
-					TableLayout tl = new TableLayout();
-
-					for (int r = 0; r < rowCount; r++)
-					{
-						TableRow tr = new TableRow();
-						tl.Rows.Add(tr);
-					}
-
-					for (int row = 0; row < rowCount; row++)
-					{
-						for (int c = 0; c < colCount; c++)
-						{
-							TableCell tc = new TableCell();
-							tl.Rows[row].Cells.Add(tc);
-							Label l = new Label
-							{
-								Text = myTable.rows[row].data[c].Text, BackgroundColor = myTable.rows[row].data[c].C
-							};
-							tc.Control = l;
-						}
-					}
-
-					p.Content = tl;
-				});
-			});
-			try
-			{
-				await fileLoadTask;
-			}
-			catch (Exception)
-			{
-			}
-		}
-		
-        void commands()
+		void commands()
         {
             Closed += quitHandler;
 
@@ -156,72 +110,5 @@ namespace Commonality
 
             helpCommand.Enabled = helpAvailable;
         }
-        
-        void quit(object sender, EventArgs e)
-        {
-	        //savePrefs();
-	        Application.Instance.Quit();
-        }
-
-        void openHandler(object sender, EventArgs e)
-        {
-	        // Need to request input file location and name.
-	        OpenFileDialog ofd = new OpenFileDialog()
-	        {
-		        Title = "Choose file to load",
-		        MultiSelect = false,
-		        Filters =
-		        {
-			        new FileFilter("CSV Files (*.csv)", ".csv")
-		        }
-	        };
-	        if (ofd.ShowDialog(ParentWindow) == DialogResult.Ok)
-	        {
-		        doLoad(ofd.FileName);
-	        }
-        }
-
-        void doLoad(string filename)
-        {
-	        string[] lines = File.ReadAllLines(filename);
-	        doStuff(lines);
-	        
-        }
-        void quitHandler(object sender, EventArgs e)
-        {
-	        //savePrefs();
-        }
-        
-        void aboutMe(object sender, EventArgs e)
-        {
-	        if (aboutBox == null || !aboutBox.Visible)
-	        {
-		        string creditText = "Version " + CentralProperties.version + ", " +
-		                            "© " + CentralProperties.author + " 2020" + "\r\n\r\n";
-		        creditText += "\r\n\r\n";
-		        creditText += "Libraries used:\r\n";
-		        creditText += "  Eto.Forms : UI framework\r\n\thttps://github.com/picoe/Eto/wiki\r\n";
-		        aboutBox = new CreditsScreen(this, creditText);
-	        }
-	        Point location = new Point(Location.X + (Width - aboutBox.Width) / 2,
-		        Location.Y + (Height - aboutBox.Height) / 2);
-	        aboutBox.Location = location;
-	        aboutBox.Show();
-        }
-        
-        void launchHelp(object sender, EventArgs e)
-        {
-	        if (helpAvailable)
-	        {
-		        new Process
-		        {
-			        StartInfo = new ProcessStartInfo(@helpPath)
-			        {
-				        UseShellExecute = true
-			        }
-		        }.Start();
-	        }
-        }
-        
 	}
 }
