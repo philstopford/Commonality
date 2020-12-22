@@ -9,6 +9,7 @@
         <e p="bin" t="ExcludeRecursive" />
         <e p="Commonality.csproj" t="IncludeRecursive" />
         <e p="MainForm.cs" t="Include" />
+        <e p="MyTable.cs" t="Include" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="netstandard2.0" t="Include">

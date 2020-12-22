@@ -6,6 +6,7 @@
 	 - Ensure color modulation is not same-channel for adjacent cells.
 	 - Construct a table from labels with text and color displayed.
 	 - Place into a scrollable to avoid issues.
+	 - Make use of parallel processing to speed up data processing; UI build is gated by single-thread UI mandate.
 	 ! Need to add ability to parse CSV with row and/or column headers
 	 ! Menu bar needed to provide file input, help, etc.
 	 ! Need to be able to mark pass/fail 
