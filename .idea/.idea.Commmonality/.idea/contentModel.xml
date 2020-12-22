@@ -9,6 +9,7 @@
         <e p="bin" t="ExcludeRecursive" />
         <e p="CentralProperties.cs" t="Include" />
         <e p="Commonality.csproj" t="IncludeRecursive" />
+        <e p="CommonUIVars.cs" t="Include" />
         <e p="creditsScreen.cs" t="Include" />
         <e p="MainForm.cs" t="Include" />
         <e p="MyTable.cs" t="Include" />

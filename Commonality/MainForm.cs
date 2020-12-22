@@ -14,12 +14,6 @@ namespace Commonality
 {
 	public partial class MainForm : Form
 	{
-		Command quitCommand, helpCommand, aboutCommand, openSim;
-		CreditsScreen aboutBox;
-		string helpPath;
-		bool helpAvailable;
-		private Panel p;
-		
 		string[] makeCSV(int maxRows, int maxCols)
 		{
 			Random rng = new Random();
@@ -52,7 +46,7 @@ namespace Commonality
 		
 		public MainForm()
 		{
-			Title = "Commonality";
+			Title = CentralProperties.productName + " " + CentralProperties.version;
 			ClientSize = new Size(400, 350);
 
 			// Figure out whether we should display the help menu, if documentation is available.
@@ -66,13 +60,36 @@ namespace Commonality
 			dp.Text = "Test";
 			
 			dc.Pages.Add(dp);
-			
-			Scrollable s = new Scrollable();
-			dp.Content = s;
 
+
+			Scrollable s = new Scrollable();
 			p = new Panel();
 			s.Content = TableLayout.AutoSized(p);
 
+			Panel outerPanel = new Panel();
+			dp.Content = outerPanel;
+			TableLayout outerTable = new TableLayout();
+			outerPanel.Content = outerTable;
+			outerTable.Rows.Add(new TableRow() {ScaleHeight = true});
+			outerTable.Rows[0].Cells.Add(new TableCell() {Control = s});
+			outerTable.Rows.Add(new TableRow());
+
+			statusBar = new Panel();
+			outerTable.Rows[1].Cells.Add(new TableCell() {Control = statusBar});
+			
+			TableLayout statusTable = new TableLayout();
+			statusBar.Content = statusTable;
+			statusTable.Rows.Add(new TableRow());
+
+			lbl_statusBar = new Label();
+			lbl_statusBar.Text = "Hello";
+			statusTable.Rows[0].Cells.Add(new TableCell() {Control = lbl_statusBar});
+
+			progressBar = new ProgressBar();
+			progressBar.MinValue = 0;
+			progressBar.MaxValue = 100;
+			statusTable.Rows[0].Cells.Add(new TableCell() {Control = progressBar});
+			
 			commands();
 			doStuff(makeCSV(maxRows: 200, maxCols: 100));
 		}
