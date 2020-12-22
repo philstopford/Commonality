@@ -246,9 +246,10 @@ namespace Commonality
 				{
 					TableCell tc = new TableCell();
 					tr.Cells.Add(tc);
-					Label l = new Label();
-					l.Text = myTable.rows[r].data[c].Text;
-					l.BackgroundColor = myTable.rows[r].data[c].C;
+					Label l = new Label
+					{
+						Text = myTable.rows[r].data[c].Text, BackgroundColor = myTable.rows[r].data[c].C
+					};
 					tc.Control = l;
 				}
 			}
