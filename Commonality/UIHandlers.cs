@@ -58,7 +58,6 @@ namespace Commonality
 
         private void updateProgress(int val)
         {
-            return;
             Application.Instance.Invoke(() =>
             {
                 progressBar.Value = val;

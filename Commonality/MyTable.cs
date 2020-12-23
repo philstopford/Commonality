@@ -91,13 +91,6 @@ namespace Commonality
 				td.updateI = 1;
             }
 
-			/*
-			timer = new System.Timers.Timer();
-			timer.AutoReset = true;
-			timer.Elapsed += TimerOnElapsed;
-			timer.Interval = CentralProperties.timer_interval;
-			timer.Start();
-			*/
 			ParallelOptions pco = new ParallelOptions();
 			Parallel.For(0, td.rowCount, pco, (i, loopState) =>
 				{
@@ -106,10 +99,7 @@ namespace Commonality
 					rows[i].parse(lines[i]);
 				}
 			);
-			/*
-			timer.Stop();
-			timer.Dispose();
-			*/
+
 			myDelegates.statusUIWrapper("Done");
 		}
 	}

@@ -18,5 +18,7 @@ namespace Commonality
         private Label lbl_statusBar;
 
         private int labelFontSize = 20;
+
+        private TableLayout tl;
     }
 }

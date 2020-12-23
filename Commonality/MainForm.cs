@@ -65,6 +65,8 @@ namespace Commonality
 
 			Scrollable s = new Scrollable();
 			p = new Panel();
+			tl = new TableLayout();
+			p.Content = tl;
 			s.Content = TableLayout.AutoSized(p);
 
 			Panel outerPanel = new Panel();

@@ -15,5 +15,6 @@
 	 - Place into a scrollable to avoid issues.
 	 - Make use of parallel processing to speed up data processing; UI build is gated by single-thread UI mandate.
 
+	 ! UI update during table build is still not where I'd like it to be...
 	 ! Need to be able to handle row and/or column headers
 	 ! Need to be able to mark pass/fail 

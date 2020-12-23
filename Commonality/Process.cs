@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Eto.Forms;
 
@@ -6,6 +7,8 @@ namespace Commonality
 { 
     public partial class MainForm
     {
+        private int pCounter;
+        private int pMax;
         private async void doStuff()
         {
             MyTable myTable = new MyTable();
@@ -28,56 +31,80 @@ namespace Commonality
 
             Application.Instance.Invoke(() => updateProgress(0.0));
 
-            int updateI = (int)Math.Ceiling((float)(rowCount * colCount) / 100);
+            pMax = rowCount * colCount;
+
+            int updateI = (int)Math.Ceiling((float)(pMax) / 100);
             if (updateI < 1)
             {
                 updateI = 1;
             }
-            double progress = 0.0;
-            int cell = 0;
+            pCounter = 0;
+            updateProgress(0);
+            updateStatus("Drawing.");
 
+            p.Content = null;
+
+            System.Timers.Timer timer = new System.Timers.Timer();
+            // Set up timers for the UI refresh
+            timer.AutoReset = true;
+            timer.Interval = CentralProperties.timer_interval;
+            timer.Elapsed += new System.Timers.ElapsedEventHandler(timerElapsed);
+
+            timer.Start();
             Task fileLoadTask = Task.Run(() =>
             {
                 Application.Instance.Invoke(() =>
                 {
-                    TableLayout tl = new TableLayout();
+                    tl = new TableLayout();
 
                     for (int r = 0; r < rowCount; r++)
                     {
                         TableRow tr = new TableRow();
+
+                        for (int c = 0; c < colCount; c++)
+                        {
+                            TableCell tc = new TableCell();
+                            tr.Cells.Add(tc);
+                            Label l = new Label
+                            {
+                                Text = myTable.rows[r].data[c].Text, BackgroundColor = myTable.rows[r].data[c].C
+                            };
+                            tc.Control = l;
+                            Interlocked.Increment(ref pCounter);
+                            if (pCounter % updateI == 0)
+                            {
+                                pbar();
+                            }
+                        }
+
                         tl.Rows.Add(tr);
                     }
 
-                    for (int row = 0; row < rowCount; row++)
-                    {
-                        for (int c = 0; c < colCount; c++)
-                        {
-                            cell++;
-                            TableCell tc = new TableCell();
-                            tl.Rows[row].Cells.Add(tc);
-                            Label l = new Label
-                            {
-                                Text = myTable.rows[row].data[c].Text, BackgroundColor = myTable.rows[row].data[c].C
-                            };
-                            tc.Control = l;
-                            if (cell % updateI == 0)
-                            {
-                                progress += 0.01f;
-                                Application.Instance.Invoke(() => updateProgress(progress));
-                            }
-                        }
-                    }
-
-                    p.Content = tl;
                 });
             });
             try
             {
                 await fileLoadTask;
+                p.Content = tl;
+                updateStatus("Complete.");
+
             }
             catch (Exception)
             {
             }
+
+            timer.Stop();
+            timer.Dispose();
+        }
+
+        void timerElapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            pbar();
+        }
+
+        void pbar()
+        {
+            updateProgress((double)pCounter / pMax);
         }
     }
 }
