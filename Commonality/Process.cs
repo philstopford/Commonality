@@ -14,13 +14,15 @@ namespace Commonality
             MyTable myTable = new MyTable();
             myTable.myDelegates.updateUIProgress = updateProgress;
             myTable.myDelegates.updateUIStatus = updateStatus;
-            Task parseTask = Task.Run(() =>
+            Task<string> parseTask = Task.Run(() =>
             {
                 myTable.parse(lines);
+
+                return "OK";
             });
             try
             {
-                await parseTask;
+                string ok = await parseTask;
             }
             catch (Exception)
             {
@@ -44,14 +46,17 @@ namespace Commonality
 
             p.Content = null;
 
-            System.Timers.Timer timer = new System.Timers.Timer();
-            // Set up timers for the UI refresh
-            timer.AutoReset = true;
-            timer.Interval = CentralProperties.timer_interval;
-            timer.Elapsed += new System.Timers.ElapsedEventHandler(timerElapsed);
+            Task t = Task.Run(() =>
+            {
+                timer = new System.Timers.Timer();
+                // Set up timers for the UI refresh
+                timer.AutoReset = true;
+                timer.Interval = CentralProperties.timer_interval;
+                timer.Elapsed += new System.Timers.ElapsedEventHandler(timerElapsed);
+                timer.Start();
+            });
 
-            timer.Start();
-            Task fileLoadTask = Task.Run(() =>
+            Task<string> fileLoadTask = Task.Run(() =>
             {
                 Application.Instance.Invoke(() =>
                 {
@@ -70,7 +75,7 @@ namespace Commonality
                                 Text = myTable.rows[r].data[c].Text, BackgroundColor = myTable.rows[r].data[c].C
                             };
                             tc.Control = l;
-                            Interlocked.Increment(ref pCounter);
+                            pCounter++;
                             if (pCounter % updateI == 0)
                             {
                                 pbar();
@@ -81,12 +86,14 @@ namespace Commonality
                     }
 
                 });
+
+                return "Complete";
             });
             try
             {
-                await fileLoadTask;
+                string done = await fileLoadTask;
                 p.Content = tl;
-                updateStatus("Complete.");
+                updateStatus(done);
 
             }
             catch (Exception)
