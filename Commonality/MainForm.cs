@@ -96,6 +96,10 @@ namespace Commonality
 			commands();
 			makeCSV(maxRows: 100, maxCols: 25);
 
+			myTable = new MyTable();
+			myTable.myDelegates.updateUIProgress = updateProgress;
+			myTable.myDelegates.updateUIStatus = updateStatus;
+
 			doStuff();
 		}
 	}

@@ -9,11 +9,28 @@ namespace Commonality
     {
         private int pCounter;
         private int pMax;
+
         private async void doStuff()
         {
-            MyTable myTable = new MyTable();
-            myTable.myDelegates.updateUIProgress = updateProgress;
-            myTable.myDelegates.updateUIStatus = updateStatus;
+            Task<string> parseTask = Task.Run(() =>
+            {
+                doStuff1();
+                doStuff2();
+
+                return "OK";
+            });
+            try
+            {
+                string ok = await parseTask;
+            }
+            catch (Exception)
+            {
+            }
+        }
+        private void doStuff1()
+        {
+            myTable.parse(lines);
+            /*
             Task<string> parseTask = Task.Run(() =>
             {
                 myTable.parse(lines);
@@ -27,7 +44,11 @@ namespace Commonality
             catch (Exception)
             {
             }
+            */
+        }
 
+        private void doStuff2()
+        {
             int rowCount = myTable.rows.Length;
             int colCount = myTable.rows[0].data.Length;
 
@@ -44,8 +65,6 @@ namespace Commonality
             updateProgress(0);
             updateStatus("Drawing.");
 
-            p.Content = null;
-
             Task t = Task.Run(() =>
             {
                 timer = new System.Timers.Timer();
@@ -56,7 +75,7 @@ namespace Commonality
                 timer.Start();
             });
 
-            Task<string> fileLoadTask = Task.Run(() =>
+            //Task<string> fileLoadTask = Task.Run(() =>
             {
                 Application.Instance.Invoke(() =>
                 {
@@ -85,10 +104,12 @@ namespace Commonality
                         tl.Rows.Add(tr);
                     }
 
+                    p.Content = tl;
                 });
 
-                return "Complete";
-            });
+                //return "Complete";
+            }
+            /*);
             try
             {
                 string done = await fileLoadTask;
@@ -99,7 +120,7 @@ namespace Commonality
             catch (Exception)
             {
             }
-
+            */
             timer.Stop();
             timer.Dispose();
         }
