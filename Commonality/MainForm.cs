@@ -53,7 +53,13 @@ namespace Commonality
 			// Figure out whether we should display the help menu, if documentation is available.
 			helpPath = Path.Combine(EtoEnvironment.GetFolderPath(EtoSpecialFolder.ApplicationResources), "Documentation", "index.html");
 			helpAvailable = File.Exists(helpPath);
-			
+
+			commands();
+
+			Content = new MyPanel();
+
+			return;
+
 			DocumentControl dc = new DocumentControl();
 			Content = dc;
 
@@ -93,7 +99,6 @@ namespace Commonality
 			progressBar.MaxValue = 100;
 			statusTable.Rows[0].Cells.Add(new TableCell() {Control = progressBar});
 			
-			commands();
 			makeCSV(maxRows: 100, maxCols: 25);
 
 			myTable = new MyTable();
