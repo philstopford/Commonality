@@ -48,6 +48,8 @@ namespace Commonality
 		void makeCommonalityPanel()
 		{
 			var grid = new GridView();
+			grid.AllowMultipleSelection = true;
+			grid.AllowColumnReordering = true;
 
 			for (int i = 0; i < cd.data[0].Count; i++)
 			{
