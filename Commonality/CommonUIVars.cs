@@ -19,5 +19,6 @@ namespace Commonality
 
         private int labelFontSize = 20;
 
+        private ContextMenu headerCM;
     }
 }

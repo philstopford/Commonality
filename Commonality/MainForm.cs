@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using Eto;
 using Eto.Forms;
 using Eto.Drawing;
+using System.Linq;
+using System.Data;
+using entropyRNG;
 
 namespace Commonality
 {
@@ -17,8 +20,7 @@ namespace Commonality
 
 		void makeCSV(int maxRows, int maxCols)
 		{
-			Random rng = new Random();
-			int rows = rng.Next(1, maxRows);
+			int rows = Convert.ToInt32(RNG.nextdouble() * maxRows);
 
 			string[] ret = new string[rows];
 
@@ -28,13 +30,13 @@ namespace Commonality
 
 			Parallel.For(0, rows, pco,(row, loopState) =>
 			{
-				int index = rng.Next(1, words.Length) - 1;
+				int index = Convert.ToInt32(RNG.nextdouble() * (words.Length - 1));
 				string line = words[index];
 				if (maxCols > 1)
 				{
 					for (int col = 1; col < maxCols; col++)
 					{
-						index = rng.Next(1, words.Length) - 1;
+						index = Convert.ToInt32(RNG.nextdouble() * (words.Length - 1));
 						line += "," + words[index];
 					}
 				}
@@ -47,7 +49,9 @@ namespace Commonality
 
 		void makeCommonalityPanel()
 		{
-			var grid = new GridView();
+			GridView grid = new GridView();
+			createHeaderContextMenu();
+			grid.ContextMenu = headerCM;
 			grid.AllowMultipleSelection = true;
 			grid.AllowColumnReordering = true;
 			grid.ShowHeader = true;
@@ -76,6 +80,19 @@ namespace Commonality
 			Content = grid;
 
 		}
+
+		void createHeaderContextMenu()
+		{
+			headerCM = new ContextMenu();
+			int itemIndex = 0;
+			ButtonMenuItem lb_test = new ButtonMenuItem() { Text = "Test" };
+			headerCM.Items.Add(lb_test);
+			headerCM.Items[itemIndex].Click += delegate
+			{
+			};
+			itemIndex++;
+		}
+
 
 		private void grid_CellFormatting(object sender, GridCellFormatEventArgs e)
 		{
@@ -107,6 +124,7 @@ namespace Commonality
 				}
 				data.Add(rowItem);
 			}
+
 			return data;
 		}
 		public MainForm()
@@ -120,8 +138,7 @@ namespace Commonality
 
 			commands();
 
-
-			makeCSV(1000, 10);
+			makeCSV(1000, 1000);
 
 			processData();
 		}

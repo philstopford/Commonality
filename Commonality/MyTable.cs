@@ -12,8 +12,6 @@ namespace Commonality
 		public string Text { get; set; }
 
 		public Color CellColor { get; set; }
-
-		public Color TextColor { get; set; }
 	}
 
 	public class CommonalityGridColumn : GridColumn
@@ -148,7 +146,7 @@ namespace Commonality
 			// Now set up our data list.
 			for (int i = 0; i < tokens.Length; i++)
 			{
-				ret.Add(new CommonalityCellData() { Text = tokens[i], CellColor = colors[uniqueStrings.IndexOf(tokens[i])], TextColor = Color.FromArgb(MyColor.White.toArgb()) });
+				ret.Add(new CommonalityCellData() { Text = tokens[i], CellColor = colors[uniqueStrings.IndexOf(tokens[i])] });
 			}
 
 			return ret;
