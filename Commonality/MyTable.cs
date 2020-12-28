@@ -1,133 +1,62 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Timers;
 using Eto.Drawing;
+using Eto.Forms;
 
 namespace Commonality
 {
-	class delegates
-    {
-		public delegate void UpdateUIStatus(string text);
-		public UpdateUIStatus updateUIStatus { get; set; }
+	public class CommonalityCellData
+	{
+		public string Text { get; set; }
 
-		public delegate void UpdateUIProgress(double val);
-		public UpdateUIProgress updateUIProgress { get; set; }
-
-		public delegate void UpdateUIProgress2(int count, int max);
-		public UpdateUIProgress2 updateUIProgress2 { get; set; }
-
-		/*
-		void timerElapsed(object sender, System.Timers.ElapsedEventArgs e)
-		{
-			progressUIWrapper((double)counter / rowCount);
-		}
-		*/
-		public void statusUIWrapper(string text)
-		{
-			updateUIStatus?.Invoke(text);
-		}
-
-		public void progressUIWrapper(double val)
-		{
-			updateUIProgress?.Invoke(val);
-		}
-
+		public Color Col { get; set; }
 	}
 
-	class TableData
-    {
-		public double progress = 0.0;
-		public int rowCount;
-		public int colCount;
-		public int cellCounter;
-		public int updateI;
-
-		public TableData()
-        {
-			rowCount = 0;
-			colCount = 0;
-			cellCounter = 0;
-			updateI = 1;
-        }
-    }
-
-	class MyTable
+	public class CommonalityGridColumn : GridColumn
 	{
-		public delegates myDelegates;
+		public IndirectBinding<CommonalityCellData> CellBinding { get; set; }
+	}
 
-		private double progress;
-		private string[] lines_;
 
-		TableData td;
+	public class CommonalityData
+	{
+		public ObservableCollection<List<CommonalityCellData>> data;
 
-		public Row[] rows;
-		private System.Timers.Timer timer;
-
-		public MyTable()
+		public CommonalityData()
 		{
-			myDelegates = new delegates();
-			td = new TableData();
+			init(new string[] { "" });
 		}
-		public void parse(string[] lines)
+
+		public CommonalityData(string[] rows)
 		{
-			lines_ = lines;
-			myDelegates.updateUIProgress?.Invoke(0.0);
-			td.rowCount = lines.Length;
+			init(rows);
+		}
 
-			// CSV must be rectangular, or this will fail.
-
-			td.colCount = lines[0].Split(new[] { ',' }).Length;
-
-			rows = new Row[td.rowCount];
-			
-			myDelegates.statusUIWrapper("Processing...");
-			td.cellCounter = 0;
-			td.progress = 0.0;
-			td.updateI = (int)Math.Ceiling((float)(td.rowCount * td.colCount) / 100);
-			if (td.updateI < 1)
+		void init(string[] rows)
+		{
+			data = new ObservableCollection<List<CommonalityCellData>>();
+			for (int i = 0; i < rows.Length; i++)
             {
-				td.updateI = 1;
+				data.Add(parseRow(rows[i]));
             }
-
-			ParallelOptions pco = new ParallelOptions();
-			Parallel.For(0, td.rowCount, pco, (i, loopState) =>
-				{
-					rows[i] = new Row(ref td);
-					rows[i].myDelegates = myDelegates;
-					rows[i].parse(lines[i]);
-				}
-			);
-
-			myDelegates.statusUIWrapper("Done");
-		}
-	}
-	
-	class Row
-	{
-		public delegates myDelegates;
-		public TableData td;
-
-		public Data[] data { get; set; }
-		
-		public Row(ref TableData td_)
-        {
-			myDelegates = new delegates();
-			td = td_;
         }
-
-		public void parse(string text)
+		
+		List<CommonalityCellData> parseRow(string text)
 		{
+			List<CommonalityCellData> ret = new List<CommonalityCellData>();
 			string[] tokens = text.Split(new[] {','});
 
-			data = new Data[td.colCount];
+			int tokenCount = tokens.Length;
 
 			// Now we need to find our unique strings.
 			List<string> uniqueStrings = new List<string>();
 			uniqueStrings.Add(tokens[0]);
 
-			for (int i = 1; i < td.colCount; i++)
+			for (int i = 1; i < tokenCount; i++)
 			{
 				try
 				{
@@ -217,27 +146,13 @@ namespace Commonality
 			}
 			
 			// Now set up our data list.
-			ParallelOptions pco = new ParallelOptions();
-
-			Parallel.For(0, tokens.Length, pco, (i, loopState) =>
+			for (int i = 0; i < tokens.Length; i++)
 			{
-				data[i] = new Data();
-				data[i].Text = tokens[i];
-				data[i].C = colors[uniqueStrings.IndexOf(tokens[i])];
-				Interlocked.Increment(ref td.cellCounter);
-				if (td.cellCounter % td.updateI == 0)
-				{
-					td.progress += 0.01f;
-					myDelegates.progressUIWrapper(td.progress);
-				}
-			});
+				ret.Add(new CommonalityCellData() { Text = tokens[i], Col = colors[uniqueStrings.IndexOf(tokens[i])] });
+			}
+
+			return ret;
 		}
 	}
 	
-	class Data
-	{
-		public string Text { get; set; }
-		
-		public Color C { get; set; }
-	}
 }

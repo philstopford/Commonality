@@ -24,7 +24,6 @@ namespace Commonality
         {
             var grid = new GridView();
 
-
             var data = PopulateData(1000, 10);
             for (int i = 0; i < 10; i++)
             {

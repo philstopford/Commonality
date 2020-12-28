@@ -15,6 +15,9 @@ namespace Commonality
 	public partial class MainForm : Form
 	{
 		private string[] lines;
+
+		CommonalityData cd;
+
 		void makeCSV(int maxRows, int maxCols)
 		{
 			Random rng = new Random();
@@ -44,7 +47,62 @@ namespace Commonality
 
 			lines = ret;
 		}
-		
+
+		void makeCommonalityPanel()
+		{
+			var grid = new GridView();
+
+			for (int i = 0; i < cd.data[0].Count; i++)
+			{
+				var col = i;
+				var cellBinding = Binding.Property((List<CommonalityCellData> r) => r[col]);
+				var column = new CommonalityGridColumn
+				{
+					HeaderText = $"Col: {i}",
+					CellBinding = cellBinding,
+					DataCell = new TextBoxCell
+					{
+						Binding = cellBinding.Child((CommonalityCellData m) => m.Text)
+					}
+				};
+				grid.Columns.Add(column);
+			}
+
+			grid.CellFormatting += grid_CellFormatting;
+
+
+			grid.DataStore = cd.data;
+
+
+			Content = grid;
+
+		}
+
+		private void grid_CellFormatting(object sender, GridCellFormatEventArgs e)
+		{
+			var col = (CommonalityGridColumn)e.Column;
+			var cellData = col.CellBinding.GetValue(e.Item);
+			e.BackgroundColor = cellData.Col;
+		}
+
+		private IList<List<CommonalityCellData>> PopulateData(int rows, int columns)
+		{
+			var data = new ObservableCollection<List<CommonalityCellData>>();
+			int colorId = 0;
+			for (int row = 0; row < rows; row++)
+			{
+				var rowItem = new List<CommonalityCellData>();
+				for (int col = 0; col < columns; col++)
+				{
+					var item = new CommonalityCellData();
+					item.Text = $"R:{row},C:{col}";
+					item.Col = Color.FromElementId(colorId++);
+					rowItem.Add(item);
+				}
+				data.Add(rowItem);
+			}
+			return data;
+		}
 		public MainForm()
 		{
 			Title = CentralProperties.productName + " " + CentralProperties.version;
@@ -56,56 +114,17 @@ namespace Commonality
 
 			commands();
 
-			Content = new MyPanel();
 
-			return;
+			makeCSV(1000, 10);
 
-			DocumentControl dc = new DocumentControl();
-			Content = dc;
+			processData();
+		}
 
-			DocumentPage dp = new DocumentPage();
-			dp.Text = "Test";
-			
-			dc.Pages.Add(dp);
+		void processData()
+        {
+			cd = new CommonalityData(lines);
 
-
-			Scrollable s = new Scrollable();
-			p = new Panel();
-			tl = new TableLayout();
-			p.Content = tl;
-			s.Content = TableLayout.AutoSized(p);
-
-			Panel outerPanel = new Panel();
-			dp.Content = outerPanel;
-			TableLayout outerTable = new TableLayout();
-			outerPanel.Content = outerTable;
-			outerTable.Rows.Add(new TableRow() {ScaleHeight = true});
-			outerTable.Rows[0].Cells.Add(new TableCell() {Control = s});
-			outerTable.Rows.Add(new TableRow());
-
-			statusBar = new Panel();
-			outerTable.Rows[1].Cells.Add(new TableCell() {Control = statusBar});
-			
-			TableLayout statusTable = new TableLayout();
-			statusBar.Content = statusTable;
-			statusTable.Rows.Add(new TableRow());
-
-			lbl_statusBar = new Label();
-			lbl_statusBar.Text = "Hello";
-			statusTable.Rows[0].Cells.Add(new TableCell() {Control = lbl_statusBar});
-
-			progressBar = new ProgressBar();
-			progressBar.MinValue = 0;
-			progressBar.MaxValue = 100;
-			statusTable.Rows[0].Cells.Add(new TableCell() {Control = progressBar});
-			
-			makeCSV(maxRows: 100, maxCols: 25);
-
-			myTable = new MyTable();
-			myTable.myDelegates.updateUIProgress = updateProgress;
-			myTable.myDelegates.updateUIStatus = updateStatus;
-
-			doStuff();
+			makeCommonalityPanel();
 		}
 	}
 }

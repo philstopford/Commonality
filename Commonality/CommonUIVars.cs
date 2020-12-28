@@ -19,10 +19,5 @@ namespace Commonality
 
         private int labelFontSize = 20;
 
-        private TableLayout tl;
-
-        private System.Timers.Timer timer;
-
-        private MyTable myTable;
     }
 }

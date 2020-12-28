@@ -47,30 +47,6 @@ namespace Commonality
                 doSave(ofd.FileName);
             }
         }
-
-        private void updateStatus(string text)
-        {
-            Application.Instance.Invoke(() =>
-            {
-                lbl_statusBar.Text = text;
-            });
-        }
-
-        private void updateProgress(int val)
-        {
-            Application.Instance.Invoke(() =>
-            {
-                progressBar.Value = val;
-            });
-        }
-
-        private void updateProgress(double val)
-        {
-            Application.Instance.Invoke(() =>
-            {
-                progressBar.Value = (Int32) (val * progressBar.MaxValue);
-            });
-        }
         
         private void doSave(string filename)
         {
@@ -79,7 +55,7 @@ namespace Commonality
         private void doLoad(string filename)
         {
             lines = File.ReadAllLines(filename);
-            doStuff();
+            processData();
         }
 
         private void quitHandler(object sender, EventArgs e)
@@ -92,7 +68,7 @@ namespace Commonality
             if (aboutBox == null || !aboutBox.Visible)
             {
                 string creditText = "Version " + CentralProperties.version + ", " +
-                                    "© " + CentralProperties.author + " 2020" + "\r\n\r\n";
+                                    "© " + CentralProperties.author + " 2020-2021" + "\r\n\r\n";
                 creditText += "\r\n\r\n";
                 creditText += "Libraries used:\r\n";
                 creditText += "  Eto.Forms : UI framework\r\n\thttps://github.com/picoe/Eto/wiki\r\n";
