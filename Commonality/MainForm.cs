@@ -50,6 +50,7 @@ namespace Commonality
 			var grid = new GridView();
 			grid.AllowMultipleSelection = true;
 			grid.AllowColumnReordering = true;
+			grid.ShowHeader = true;
 
 			for (int i = 0; i < cd.data[0].Count; i++)
 			{
@@ -81,7 +82,13 @@ namespace Commonality
 			var col = (CommonalityGridColumn)e.Column;
 			var cellData = col.CellBinding.GetValue(e.Item);
 			e.BackgroundColor = cellData.CellColor;
-			e.ForegroundColor = cellData.TextColor;
+			e.ForegroundColor = inverseColor(e.BackgroundColor);
+		}
+
+		Color inverseColor(Color source)
+        {
+			Color ret = new Color(Math.Abs(1.0f - source.B), Math.Abs(1.0f - source.R), Math.Abs(1.0f - source.G));
+			return ret;
 		}
 
 		private IList<List<CommonalityCellData>> PopulateData(int rows, int columns)
