@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Timers;
+using color;
 using Eto.Drawing;
 using Eto.Forms;
 
 namespace Commonality
 {
-	public class CommonalityCellData
+    public class CommonalityCellData
 	{
 		public string Text { get; set; }
 
-		public Color Col { get; set; }
+		public Color CellColor { get; set; }
+
+		public Color TextColor { get; set; }
 	}
 
 	public class CommonalityGridColumn : GridColumn
@@ -148,7 +148,7 @@ namespace Commonality
 			// Now set up our data list.
 			for (int i = 0; i < tokens.Length; i++)
 			{
-				ret.Add(new CommonalityCellData() { Text = tokens[i], Col = colors[uniqueStrings.IndexOf(tokens[i])] });
+				ret.Add(new CommonalityCellData() { Text = tokens[i], CellColor = colors[uniqueStrings.IndexOf(tokens[i])], TextColor = Color.FromArgb(MyColor.White.toArgb()) });
 			}
 
 			return ret;

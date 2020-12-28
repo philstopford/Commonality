@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Commonality
+﻿namespace Commonality
 {
     public static class CentralProperties
     {

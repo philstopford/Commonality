@@ -4,6 +4,10 @@
     <TargetFrameworks>net5.0</TargetFrameworks>
     <ServerGarbageCollection>true</ServerGarbageCollection>
   </PropertyGroup>
+	
+  <ItemGroup>
+    <Compile Include="..\..\DesignLibs_GPL\Common\Color\myColor.cs" Link="myColor.cs" />
+  </ItemGroup>
   
   <ItemGroup>
     <PackageReference Include="Eto.Forms" Version="2.5.8" />

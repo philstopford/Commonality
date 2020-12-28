@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Data;
-using System.Diagnostics;
 using System.IO;
-using System.Net.Mime;
 using System.Threading.Tasks;
 using Eto;
 using Eto.Forms;
@@ -12,7 +9,7 @@ using Eto.Drawing;
 
 namespace Commonality
 {
-	public partial class MainForm : Form
+    public partial class MainForm : Form
 	{
 		private string[] lines;
 
@@ -70,7 +67,6 @@ namespace Commonality
 
 			grid.CellFormatting += grid_CellFormatting;
 
-
 			grid.DataStore = cd.data;
 
 
@@ -82,7 +78,8 @@ namespace Commonality
 		{
 			var col = (CommonalityGridColumn)e.Column;
 			var cellData = col.CellBinding.GetValue(e.Item);
-			e.BackgroundColor = cellData.Col;
+			e.BackgroundColor = cellData.CellColor;
+			e.ForegroundColor = cellData.TextColor;
 		}
 
 		private IList<List<CommonalityCellData>> PopulateData(int rows, int columns)
@@ -96,7 +93,7 @@ namespace Commonality
 				{
 					var item = new CommonalityCellData();
 					item.Text = $"R:{row},C:{col}";
-					item.Col = Color.FromElementId(colorId++);
+					item.CellColor = Color.FromElementId(colorId++);
 					rowItem.Add(item);
 				}
 				data.Add(rowItem);
