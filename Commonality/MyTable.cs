@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using color;
 using Eto.Drawing;
 using Eto.Forms;
@@ -22,33 +23,36 @@ namespace Commonality
 
 	public class CommonalityData
 	{
-		public ObservableCollection<List<CommonalityCellData>> data;
+		public ObservableCollection<CommonalityCellData[]> data;
 
-		public CommonalityData()
+		ParallelOptions pco;
+
+		public CommonalityData(ref ParallelOptions pco_)
 		{
-			init(new string[] { "" });
+			init(ref pco_, new string[] { "" });
 		}
 
-		public CommonalityData(string[] rows)
+		public CommonalityData(ref ParallelOptions pco_, string[] rows)
 		{
-			init(rows);
+			init(ref pco_, rows);
 		}
 
-		void init(string[] rows)
+		void init(ref ParallelOptions pco_, string[] rows)
 		{
-			data = new ObservableCollection<List<CommonalityCellData>>();
+			pco = pco_;
+			data = new ObservableCollection<CommonalityCellData[]>();
 			for (int i = 0; i < rows.Length; i++)
             {
 				data.Add(parseRow(rows[i]));
             }
         }
 		
-		List<CommonalityCellData> parseRow(string text)
+		CommonalityCellData[] parseRow(string text)
 		{
-			List<CommonalityCellData> ret = new List<CommonalityCellData>();
 			string[] tokens = text.Split(new[] {','});
 
 			int tokenCount = tokens.Length;
+			CommonalityCellData[] ret = new CommonalityCellData[tokenCount];
 
 			// Now we need to find our unique strings.
 			List<string> uniqueStrings = new List<string>();
@@ -142,12 +146,14 @@ namespace Commonality
 					colors[i] = new Color((float) (RValue) / 255, (float) (GValue) / 255,
 						(float) (BValue) / 255);				}
 			}
-			
+
 			// Now set up our data list.
-			for (int i = 0; i < tokens.Length; i++)
+			Parallel.For(0, tokens.Length, pco, (i, loopState) =>
+			// for (int i = 0; i < tokens.Length; i++)
 			{
-				ret.Add(new CommonalityCellData() { Text = tokens[i], CellColor = colors[uniqueStrings.IndexOf(tokens[i])] });
+				ret[i] = new CommonalityCellData() { Text = tokens[i], CellColor = colors[uniqueStrings.IndexOf(tokens[i])] };
 			}
+			);
 
 			return ret;
 		}

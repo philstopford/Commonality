@@ -18,6 +18,8 @@ namespace Commonality
 
 		CommonalityData cd;
 
+		ParallelOptions pco;
+
 		void makeCSV(int maxRows, int maxCols)
 		{
 			int rows = Convert.ToInt32(RNG.nextdouble() * maxRows);
@@ -25,8 +27,6 @@ namespace Commonality
 			string[] ret = new string[rows];
 
 			string[] words = new[] {"the", "quick", "brown fox", "jumps"};
-
-			ParallelOptions pco = new ParallelOptions();
 
 			Parallel.For(0, rows, pco,(row, loopState) =>
 			{
@@ -56,10 +56,10 @@ namespace Commonality
 			grid.AllowColumnReordering = true;
 			grid.ShowHeader = true;
 
-			for (int i = 0; i < cd.data[0].Count; i++)
+			for (int i = 0; i < cd.data[0].Length; i++)
 			{
 				var col = i;
-				var cellBinding = Binding.Property((List<CommonalityCellData> r) => r[col]);
+				var cellBinding = Binding.Property((CommonalityCellData[] r) => r[col]);
 				var column = new CommonalityGridColumn
 				{
 					HeaderText = $"Col: {i}",
@@ -108,20 +108,22 @@ namespace Commonality
 			return ret;
 		}
 
-		private IList<List<CommonalityCellData>> PopulateData(int rows, int columns)
+		private IList<CommonalityCellData[]> PopulateData(int rows, int columns)
 		{
-			var data = new ObservableCollection<List<CommonalityCellData>>();
+			var data = new ObservableCollection<CommonalityCellData[]>();
 			int colorId = 0;
 			for (int row = 0; row < rows; row++)
 			{
-				var rowItem = new List<CommonalityCellData>();
-				for (int col = 0; col < columns; col++)
+				var rowItem = new CommonalityCellData[columns];
+				Parallel.For(0, columns, pco, (col, loopState) =>
+				//for (int col = 0; col < columns; col++)
 				{
 					var item = new CommonalityCellData();
 					item.Text = $"R:{row},C:{col}";
 					item.CellColor = Color.FromElementId(colorId++);
-					rowItem.Add(item);
+					rowItem[col] = item;
 				}
+				);
 				data.Add(rowItem);
 			}
 
@@ -131,6 +133,8 @@ namespace Commonality
 		{
 			Title = CentralProperties.productName + " " + CentralProperties.version;
 			ClientSize = new Size(400, 350);
+
+			pco = new ParallelOptions();
 
 			// Figure out whether we should display the help menu, if documentation is available.
 			helpPath = Path.Combine(EtoEnvironment.GetFolderPath(EtoSpecialFolder.ApplicationResources), "Documentation", "index.html");
@@ -145,7 +149,7 @@ namespace Commonality
 
 		void processData()
         {
-			cd = new CommonalityData(lines);
+			cd = new CommonalityData(ref pco, lines);
 
 			makeCommonalityPanel();
 		}
