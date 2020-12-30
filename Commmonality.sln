@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "resources", "resources\reso
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "entropyRNG", "..\DesignLibs_GPL\Common\entropyRNG\entropyRNG.csproj", "{81CBF045-38BE-4FF2-A59B-A83381AF7AA7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mersenneTwister", "..\DesignLibs_GPL\Common\MersenneTwister\mersenneTwister.csproj", "{12DA2AB3-553C-4A9A-9481-B3A8432F9546}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{81CBF045-38BE-4FF2-A59B-A83381AF7AA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{81CBF045-38BE-4FF2-A59B-A83381AF7AA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{81CBF045-38BE-4FF2-A59B-A83381AF7AA7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12DA2AB3-553C-4A9A-9481-B3A8432F9546}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12DA2AB3-553C-4A9A-9481-B3A8432F9546}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12DA2AB3-553C-4A9A-9481-B3A8432F9546}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12DA2AB3-553C-4A9A-9481-B3A8432F9546}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
