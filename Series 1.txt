@@ -1,3 +1,11 @@
+1.0a2
+
+	- Replaced previous commonality display with grid view.
+	 - Much faster, more appropriate.
+	 - Allows for column re-ordering.
+	 - Native support for column headers.
+	 - Used Curtis' example, but added parallel processing compatibility to try and speed things up where possible.
+
 1.0a1
 
 	- Prototyping.
