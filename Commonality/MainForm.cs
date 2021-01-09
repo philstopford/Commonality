@@ -76,7 +76,6 @@ namespace Commonality
 
 			grid.DataStore = cd.data;
 
-
 			Content = grid;
 
 		}
@@ -108,27 +107,6 @@ namespace Commonality
 			return ret;
 		}
 
-		private IList<CommonalityCellData[]> PopulateData(int rows, int columns)
-		{
-			var data = new ObservableCollection<CommonalityCellData[]>();
-			int colorId = 0;
-			for (int row = 0; row < rows; row++)
-			{
-				var rowItem = new CommonalityCellData[columns];
-				Parallel.For(0, columns, pco, (col, loopState) =>
-				//for (int col = 0; col < columns; col++)
-				{
-					var item = new CommonalityCellData();
-					item.Text = $"R:{row},C:{col}";
-					item.CellColor = Color.FromElementId(colorId++);
-					rowItem[col] = item;
-				}
-				);
-				data.Add(rowItem);
-			}
-
-			return data;
-		}
 		public MainForm()
 		{
 			Title = CentralProperties.productName + " " + CentralProperties.version;

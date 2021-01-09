@@ -1,5 +1,6 @@
 1.0a2
 
+	- WPF performance improved thanks to assistance from Curtis.
 	- Replaced previous commonality display with grid view.
 	 - Much faster, more appropriate.
 	 - Allows for column re-ordering.

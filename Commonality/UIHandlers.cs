@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -51,7 +52,24 @@ namespace Commonality
         
         private void doSave(string filename)
         {
-            File.WriteAllLines(filename, lines);
+            List<string> linesToWrite = new List<string>();
+            // Map our collection into a list of strings. Need to do this to handle re-ordered columns, etc.
+            int rowCount = cd.data.Count;
+            for (int row = 0; row < rowCount; row++)
+            {
+                string line = "";
+                int cols = cd.data[row].Length;
+                for (int col = 0; col < cols; col++)
+                {
+                    line += cd.data[row][col].Text;
+                    if (col != cols - 1)
+                    {
+                        line += ",";
+                    }
+                }
+                linesToWrite.Add(line);
+            }
+            File.WriteAllLines(filename, linesToWrite);
         }
         private void doLoad(string filename)
         {

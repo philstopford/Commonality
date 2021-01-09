@@ -55,33 +55,25 @@
         <e p="resources.csproj" t="IncludeRecursive" />
       </e>
     </e>
+    <e p="D:\development\git\DesignLibs_GPL\artifacts\bin\entropyRNG\Debug\net5.0" t="ExcludeRecursive" />
+    <e p="D:\development\git\DesignLibs_GPL\artifacts\bin\MersenneTwister\Debug\net5.0" t="ExcludeRecursive" />
+    <e p="D:\development\git\DesignLibs_GPL\artifacts\obj\Windows\entropyRNG\Debug\net5.0" t="ExcludeRecursive">
+      <e p="entropyRNG.AssemblyInfo.cs" t="Include" />
+    </e>
+    <e p="D:\development\git\DesignLibs_GPL\artifacts\obj\Windows\MersenneTwister\Debug\net5.0" t="ExcludeRecursive">
+      <e p="mersenneTwister.AssemblyInfo.cs" t="Include" />
+    </e>
     <e p="D:\development\git\DesignLibs_GPL\Common\Color\myColor.cs" t="Include" />
     <e p="D:\development\git\DesignLibs_GPL\Common\entropyRNG" t="IncludeRecursive">
-      <e p="bin" t="ExcludeRecursive" />
       <e p="commonRNG.cs" t="Include" />
       <e p="crypto.cs" t="Include" />
       <e p="entropyRNG.csproj" t="IncludeRecursive" />
       <e p="mersennetwister.cs" t="Include" />
-      <e p="obj" t="ExcludeRecursive">
-        <e p="Debug" t="Include">
-          <e p="net5.0" t="Include">
-            <e p="entropyRNG.AssemblyInfo.cs" t="Include" />
-          </e>
-        </e>
-      </e>
       <e p="system.cs" t="Include" />
     </e>
     <e p="D:\development\git\DesignLibs_GPL\Common\MersenneTwister" t="IncludeRecursive">
-      <e p="bin" t="ExcludeRecursive" />
       <e p="mersennetwister.cs" t="Include" />
       <e p="mersenneTwister.csproj" t="IncludeRecursive" />
-      <e p="obj" t="ExcludeRecursive">
-        <e p="Debug" t="Include">
-          <e p="net5.0" t="Include">
-            <e p="mersenneTwister.AssemblyInfo.cs" t="Include" />
-          </e>
-        </e>
-      </e>
     </e>
   </component>
 </project>

@@ -5,6 +5,8 @@
     <content url="file://$MODULE_DIR$/../../../DesignLibs_GPL/Common/Color/myColor.cs" />
     <content url="file://$MODULE_DIR$/../../../DesignLibs_GPL/Common/MersenneTwister" />
     <content url="file://$MODULE_DIR$/../../../DesignLibs_GPL/Common/entropyRNG" />
+    <content url="file://$MODULE_DIR$/../../../DesignLibs_GPL/artifacts/obj/Windows/MersenneTwister/Debug/net5.0/MersenneTwister.AssemblyInfo.cs" />
+    <content url="file://$MODULE_DIR$/../../../DesignLibs_GPL/artifacts/obj/Windows/entropyRNG/Debug/net5.0/entropyRNG.AssemblyInfo.cs" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>
