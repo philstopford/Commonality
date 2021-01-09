@@ -95,10 +95,20 @@ namespace Commonality
 
 		private void grid_CellFormatting(object sender, GridCellFormatEventArgs e)
 		{
-			var col = (CommonalityGridColumn)e.Column;
-			var cellData = col.CellBinding.GetValue(e.Item);
-			e.BackgroundColor = cellData.CellColor;
-			e.ForegroundColor = inverseColor(e.BackgroundColor);
+			try
+			{
+				var col = (CommonalityGridColumn)e.Column;
+				var cellData = col.CellBinding.GetValue(e.Item);
+				// Can get a crash here with rapid resize due to grid view lagging display because cellData can be null
+				if (cellData != null)
+				{
+					e.BackgroundColor = cellData.CellColor;
+					e.ForegroundColor = inverseColor(e.BackgroundColor);
+				}
+			}
+			catch (Exception)
+            {
+            }
 		}
 
 		Color inverseColor(Color source)
