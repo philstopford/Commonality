@@ -355,3 +355,7 @@ MigrationBackup/
 .ionide/
 *.cache
 *.v2
+.idea/.idea.Commmonality/.idea/contentModel.xml
+.idea/.idea.Commmonality/.idea/indexLayout.xml
+.idea/.idea.Commmonality/.idea/modules.xml
+.idea/.idea.Commmonality/.idea/riderModule.iml
